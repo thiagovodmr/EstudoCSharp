@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CAP.ApplicationCore.ViewModels.Aluno.AlunoViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-7">
+                <h3 class="align-middle"><strong>Alunos cadastrados no sistema</strong></h3>
+            </div>
+            <div class="col-md-2 offset-md-3">
+                <div class="card-tools">
+                    <a href="@Url.Action("Create","Aluno")" class="btn btn-primary btn-block text-white">
+                        <span>Cadastrar</span>
+                        <i class="fas fa-user-plus ml-md-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div><!-- fim div card-header -->
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="dataTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th class="nosort">Acões</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var aluno in Model)
+                {
+                    <tr>
+                        <td>@aluno.AlunoId</td>
+                        <td>@aluno.Nome</td>
+                        <td>@aluno.DataNascimento.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            @Html.ActionLink("Detalhes", "Detalhes", "Aluno", new { id = aluno.AlunoId }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Atualizar", "Edit", "Aluno", new { id = aluno.AlunoId }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Deletar", "Delete", "Aluno", new { id = aluno.AlunoId }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+<partial name="~/Views/Shared/AdminLTE/DataTables/_ScriptsDataTables.cshtml" />
+
+

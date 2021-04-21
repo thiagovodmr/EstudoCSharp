@@ -1,0 +1,60 @@
+﻿@model CAP.ApplicationCore.ViewModels.Matricula.MatriculaViewModel
+@using CAP.ApplicationCore.ViewModels.Matricula 
+
+<table class="table table-bordered">
+    <tr><td colspan="2" class="bg-gradient-info text-center">Dados do Aluno</td></tr>   
+    <tr>
+         <th class="w-25">Id do Aluno</th>
+         <td>@Model.AlunoId</td>
+     </tr>  
+    <tr>
+        <th class="w-25">Nome do Aluno</th>    
+        <td>@Model.Aluno.Nome</td>
+    </tr>
+    <tr>
+        <th class="w-25">Data de Nascimento</th>
+        <td>@Model.Aluno.DataNascimento</td>
+    </tr>      
+</table>
+
+<table class="table table-bordered">
+    <tr><td colspan="2" class="bg-gradient-info text-center">Dados do Curso</td></tr>
+    <tr>
+    <tr>
+        <th class="w-25">Id do Curso</th>
+        <td>@Model.CursoId</td>
+    </tr>
+    <tr>
+        <th class="w-25">Titulo do curso</th>
+        <td>@Model.Curso.Titulo</td>
+    </tr>
+    <tr>
+        <th class="w-25">Descrição do curso</th>
+        <td>@Model.Curso.Descricao</td>
+    </tr>
+</table>
+
+<h1 class="text-center">Atualizar Dados</h1>
+@using (Html.BeginForm("Edit", "Matricula", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+<div class="form form-group">
+    @Html.HiddenFor(m => m.AlunoId)
+    @Html.HiddenFor(m => m.CursoId)
+
+    @Html.LabelFor(m => m.MatriculaId)
+    @Html.TextBoxFor(m => m.MatriculaId, new { @class = "form form-control", @readonly = "readonly" })
+
+    @Html.LabelFor(m => m.DataInicio)
+    @Html.TextBoxFor(m => m.DataInicio, "{0:yyyy-MM-dd}", new { @class = "form form-control", @type = "date" })
+
+    @Html.LabelFor(m => m.DataFim)
+    @Html.TextBoxFor(m => m.DataFim, "{0:yyyy-MM-dd}", new { @class = "form form-control", @type = "date" })
+
+    @Html.LabelFor(m => m.Turno)
+    @Html.DropDownListFor(model => model.Turno, Html.GetEnumSelectList<Turnos>(), null, new { @class = "form-control" })
+
+    <input type="submit" value="Atualizar" class="btn btn-success btn-block mt-3">
+
+</div>
+}

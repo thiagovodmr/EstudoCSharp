@@ -1,0 +1,72 @@
+﻿@model CAP.ApplicationCore.ViewModels.Matricula.MatriculaViewModel
+@using CAP.ApplicationCore.Utils
+
+<h1 class="text-center">Matricula</h1>
+
+<table class="table table-responsive-md table-bordered">
+    <tr>
+        <th colspan="2" class="text-center bg-gradient-info">Informações do Aluno</th>
+    </tr>
+    <tr>
+        <th class="w-25">Id</th>
+        <td>@Model.AlunoId</td>
+    </tr>
+    <tr>
+        <th class="w-25">Nome do Aluno</th>
+        <td>@Model.Aluno.Nome</td>
+    </tr>
+    <tr>
+        <th class="w-25">Data de Nascimento do Aluno</th>
+        <td>@Model.Aluno.DataNascimento.ToString("dd/MM/yyyy")</td>
+    </tr>
+    @*----------------- informações da tabela de Cursos --------------*@
+    <tr>
+        <th colspan="2" class="text-center bg-gradient-info">Informações do Curso</th>
+    </tr>
+    <tr>
+        <th class="w-25">Id</th>
+        <td>@Model.CursoId</td>
+    </tr>
+    <tr>
+        <th class="w-25">Titulo</th>
+        <td>@Model.Curso.Titulo</td>
+    </tr>
+    <tr>
+        <th class="w-25">Descrição</th>
+        <td>@Model.Curso.Descricao</td>
+    </tr>
+    @*------------------ informações exclusivas da tabela de Matriculas ------------*@
+    <tr>
+        <th colspan="2" class="text-center bg-gradient-info">Dados referentes ao processo de matricula</th>
+    </tr>
+    <tr>
+        <th class="w-25">Id</th>
+        <td>@Model.MatriculaId</td>
+    </tr>
+    <tr>
+        <th class="w-25">Data de inicio da matricula</th>
+        <td>@Model.DataInicio.ToString("dd/MM/yyyy")</td>
+    </tr>
+    <tr>
+        <th class="w-25">Data de término da matricula</th>
+        <td>@Model.DataFim.ToString("dd/MM/yyyy")</td>
+    </tr>
+    <tr>
+        <th class="w-25">Turno</th>
+        <td>@Model.Turno.GetDisplayName()</td>
+    </tr>
+</table>
+<div class="row mb-4">
+    <div class="col-md-3">
+        @Html.ActionLink("Deletar", "Delete", "Matricula", new { id = Model.MatriculaId }, new { @class = "btn btn-block  btn-danger" })
+    </div>
+    <div class="col-md-3">
+        @Html.ActionLink("Atualizar", "Edit", "Matricula", new { id = Model.MatriculaId }, new { @class = "btn btn-block  btn-primary" })
+    </div>
+    <div class="col-md-3">
+        @Html.ActionLink("Página das informações do Curso", "Detalhes", "Curso", new { id = Model.CursoId }, new { @class = "btn btn-block  btn-info" })
+    </div>
+    <div class="col-md-3">
+        @Html.ActionLink("Página das informações do Aluno", "Detalhes", "Aluno", new { id = Model.AlunoId }, new { @class = "btn btn-block  btn-info" })
+    </div>
+</div>

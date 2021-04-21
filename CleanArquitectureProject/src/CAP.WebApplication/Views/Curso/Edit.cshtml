@@ -1,0 +1,27 @@
+﻿@model CAP.ApplicationCore.ViewModels.Curso.CursoViewModel
+
+@using (Html.BeginForm("Edit", "Curso", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <div>
+        @Html.HiddenFor(model => model.CursoId)
+    </div>
+    <div>
+        @Html.LabelFor(a => a.Titulo)
+    </div>
+    <div>
+        @Html.TextBoxFor(a => a.Titulo, null, new { @class = "form form-control" })
+        @Html.ValidationMessageFor(a => a.Titulo)
+    </div>
+    <div>
+        @Html.LabelFor(a => a.Descricao)
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model.Descricao,  new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Descricao)
+    </div>
+    <div>
+        <input type="submit" value="Atualizar" class="btn btn-success mt-3">
+    </div>
+}
+

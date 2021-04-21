@@ -1,0 +1,46 @@
+﻿@model CAP.ApplicationCore.ViewModels.Matricula.MatriculaViewModel
+
+<h1>Tem certeza que deseja deletar o cadastro a seguir</h1>
+@using (Html.BeginForm("Delete", "Matricula", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.MatriculaId)
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.MatriculaId, null, new { @class = "form form-control", @readonly = "readonly" })
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.CursoId)
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.CursoId, null, new { @class = "form form-control", @readonly = "readonly" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Curso.Titulo)
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Curso.Titulo, null, new { @class = "form form-control", @disabled = "disabled" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.AlunoId)
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.AlunoId, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Aluno.Nome)
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Aluno.Nome, new { @class = "form-control", @disabled = "disabled" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Aluno.DataNascimento)
+    </div>
+    <div>
+        @Html.TextBoxFor(m => m.Aluno.DataNascimento, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control", @disabled = "disabled" })
+    </div>
+    <div>
+        <input type="submit" value="Deletar" class="btn btn-danger mt-3">
+    </div>
+}

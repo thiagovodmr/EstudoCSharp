@@ -1,0 +1,25 @@
+﻿@model CAP.ApplicationCore.ViewModels.Aluno.AlunoViewModel
+
+<h1>Tem certeza que deseja deletar o cadastro a seguir</h1>
+@using (Html.BeginForm("Delete", "Aluno", FormMethod.Post))
+{
+    <div>
+        @Html.HiddenFor(model => model.AlunoId)
+    </div>
+    
+    <div>
+        @Html.LabelFor(a => a.Nome)
+    </div>
+    <div>
+        @Html.TextBoxFor(a => a.Nome, null, new { @class = "form form-control", @disabled = "disabled" })
+    </div>
+    <div>
+        @Html.LabelFor(a => a.DataNascimento)
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model.DataNascimento, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control", @disabled = "disabled" })
+    </div>
+    <div>
+        <input type="submit" value="Deletar" class="btn btn-danger mt-3">
+    </div>
+}

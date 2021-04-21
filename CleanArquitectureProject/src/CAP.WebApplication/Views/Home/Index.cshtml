@@ -1,0 +1,54 @@
+﻿@model CAP.ApplicationCore.ViewModels.Home.HomeViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h1>Bem vindo</h1>
+<div class="row">
+    <div class="col-md-3">
+        <!-- small box -->
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>@Model.Alunos.Count()</h3>
+
+                <p>Aluno(s) cadastrado(s)</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <a href="@Url.ActionLink("Index","Aluno")" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>@Model.Cursos.Count()</h3>
+
+                <p>Curso(s) cadastrado(s)</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-book"></i>
+            </div>
+            <a href="@Url.ActionLink("Index","Curso")" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>@Model.Matriculas.Count()</h3>
+
+                <p>Matricula(s) Efetuada(s)</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-file-signature"></i>
+            </div>
+            <a href="@Url.ActionLink("Index","Matricula")" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+
+        </div>
+    </div>
+</div>

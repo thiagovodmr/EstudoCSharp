@@ -1,0 +1,61 @@
+﻿@model CAP.ApplicationCore.ViewModels.Aluno.AlunoViewModel
+@using CAP.ApplicationCore.Utils
+ 
+<div class="container">
+    <h1>Informações do Aluno</h1>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+        </tr>
+        <tr>
+            <td>@Model.Nome</td>
+            <td>@Model.DataNascimento.ToString("dd/MM/yyyy")</td>
+        </tr>
+    </table>
+
+    <div class="mt-md-4">
+        @Html.ActionLink("Matricular Aluno", "Create", "Matricula", new { id = Model.AlunoId }, new { @class = "btn btn-primary" })
+    </div>
+</div>
+
+
+    <hr />
+    <div class="container mt-md-5">
+        <h4>Histórico de matriculas</h4>
+        <table class="table table-bordered">
+            <tr>
+                <th>Curso</th>
+                <th>Data de inicio</th>
+                <th>Data de conclusão</th>
+                <th>Turno</th>
+                <th>Ações</th>  
+            </tr>
+            @if (Model.Matriculas.Count() > 0)
+            {
+                @foreach (var matricula in Model.Matriculas)
+                {
+                    <tr>
+                        <td>@matricula.Curso.Titulo</td>
+                        <td>@matricula.DataInicio.ToString("dd/MMMM/yyyy")</td>
+                        <td>@matricula.DataFim.ToString("dd/MMMM/yyyy")</td>
+                        <td>@matricula.Turno.GetDisplayName()</td>
+                        <td>
+                            @Html.ActionLink("Detalhes", "Detalhes", "Matricula", new { id = matricula.MatriculaId }, new { @class = "btn btn-info" })
+                            
+                        </td>  
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">Não há registros de matriculas para este aluno no sistema</td>  
+                </tr>
+            }
+            </table>
+    </div>
+
+
+

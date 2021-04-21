@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CAP.ApplicationCore.ViewModels.Matricula.MatriculaViewModel>
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-7">
+                <h3 class="align-middle"><strong>Matriculas efetuadas</strong></h3>
+            </div>
+        </div>
+    </div><!-- fim div card-header -->
+    <div class="card-body">
+        <table id ="dataTable" class="table table-responsive-md table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id da matricula</th>  
+                    <th>Nome do Aluno</th>
+                    <th>Curso</th>
+                    <th>Data de Inicio do curso</th>
+                    <th>Data de Conclusão do curso</th>
+                    <th>Acões</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var matricula in Model)
+                {
+                    <tr>
+                        <td>@matricula.MatriculaId</td>
+                        <td>@matricula.Aluno.Nome</td>
+                        <td>@matricula.Curso.Titulo</td>
+                        <td>@matricula.DataInicio.ToString("dd/MMMM/yyyy")</td>
+                        <td>@matricula.DataFim.ToString("dd/MMMM/yyyy")</td>
+                        <td>
+                            @Html.ActionLink("Detalhes", "Detalhes", "Matricula", new { id = matricula.MatriculaId }, new { @class = "btn btn-info" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<partial name="~/Views/Shared/AdminLTE/DataTables/_ScriptsDataTables.cshtml" />

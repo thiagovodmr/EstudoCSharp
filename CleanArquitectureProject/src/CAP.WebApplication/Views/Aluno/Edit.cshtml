@@ -1,0 +1,26 @@
+﻿@model CAP.ApplicationCore.ViewModels.Aluno.AlunoViewModel
+
+@using (Html.BeginForm("Edit", "Aluno", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+<div>
+    @Html.HiddenFor(model => model.AlunoId)
+</div>
+    <div>
+        @Html.LabelFor(a => a.Nome)
+    </div>
+    <div>
+        @Html.TextBoxFor(a => a.Nome, null, new { @class = "form form-control" })
+        @Html.ValidationMessageFor(a => a.Nome)
+    </div>
+    <div>
+        @Html.LabelFor(a => a.DataNascimento)
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model.DataNascimento, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control", @value= Model.DataNascimento})
+        @Html.ValidationMessageFor(a => a.DataNascimento)
+    </div>
+    <div>
+        <input type="submit" value="Atualizar" class="btn btn-success mt-3">
+    </div>
+}

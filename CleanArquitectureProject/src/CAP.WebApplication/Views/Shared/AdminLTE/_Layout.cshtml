@@ -1,0 +1,60 @@
+﻿
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>@ViewData["Title"]</title>
+    <partial name="AdminLTE/_Styles" />
+    <partial name="AdminLTE/_Scripts" />
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <partial name="AdminLTE/_TopNavigation" />
+        <partial name="AdminLTE/_MainNavigation" />
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <partial name="~/Views/Shared/_FlashMessage.cshtml" />
+                        </div>
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+
+        <partial name="AdminLTE/_Footer" />
+    </div>
+    <!-- ./wrapper -->
+ 
+    <script>
+        var href = window.location.pathname;   
+        if ($(".sidebar a[href='" + href + "']").length) {
+            $(".sidebar a[href='" + href + "']").addClass('active');
+            $(".sidebar  a[href='" + href + "']").parents("li.has-treeview").addClass("menu-open");
+        }
+    </script>
+</body>
+</html>

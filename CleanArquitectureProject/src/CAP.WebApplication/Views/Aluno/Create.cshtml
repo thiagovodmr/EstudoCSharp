@@ -1,0 +1,40 @@
+﻿@model CAP.ApplicationCore.ViewModels.Aluno.AlunoViewModel
+
+
+<h1>Cadastrar Aluno</h1>
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Prencha o formulário abaixo</h3>
+    </div>
+    <!-- inicio do formulário -->
+    @using (Html.BeginForm("Create", "Aluno", FormMethod.Post, new { @role = "form" }))
+    {
+        @Html.ValidationSummary(true)
+
+        <!-- conteudo formulario -->
+        <div class="card-body">
+            <div class="form-group">
+                @Html.LabelFor(alun => alun.Nome)
+                @Html.TextBoxFor(a => a.Nome, null, new { @class = "form form-control" })
+                @Html.ValidationMessageFor(alun => alun.Nome)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(alun => alun.DataNascimento)
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                    @Html.TextBoxFor(alun => alun.DataNascimento, new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(a => a.DataNascimento)
+                </div>
+                <!-- /.input group -->
+            </div> <!-- /.form-group -->
+   
+        </div> <!-- end -->
+       
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+    }
+</div>

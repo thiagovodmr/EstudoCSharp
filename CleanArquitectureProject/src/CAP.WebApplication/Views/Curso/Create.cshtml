@@ -1,0 +1,32 @@
+﻿@model CAP.ApplicationCore.ViewModels.Curso.CursoViewModel
+
+<h1>Cadastrar Curso</h1>
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Prencha o formulário abaixo</h3>
+    </div>
+    <!-- inicio do formulário -->
+    @using (Html.BeginForm("Create", "Curso", FormMethod.Post, new { @role = "form" }))
+    {
+        @Html.ValidationSummary(true)
+        <!-- Conteudo do formulário -->
+        <div class="card-body">
+            <div class="form-group">
+                @Html.LabelFor(c => c.Titulo )
+                @Html.TextBoxFor(c => c.Titulo, null, new { @class = "form form-control" })
+                @Html.ValidationMessageFor(a => a.Titulo)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(c => c.Descricao)
+                @Html.TextBoxFor(c => c.Descricao, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.Descricao)
+            </div>
+        </div><!-- fim do formulário -->
+        
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+
+    }
+</div>

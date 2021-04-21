@@ -1,0 +1,65 @@
+﻿@model CAP.ApplicationCore.ViewModels.Matricula.MatriculaViewModel
+@using CAP.ApplicationCore.ViewModels.Matricula
+
+@if (Model.Cursos.Count() > 0)
+{
+    <h1>Informações do Aluno</h1>
+
+    <table class="table table-bordered text-center">
+        <tr>
+            <th class="bg-white">Nome</th>
+            <th class="bg-white">Data de Nascimento</th>
+        </tr>
+        <tr>
+            <td>@Model.Aluno.Nome</td>
+            <td>@Model.Aluno.DataNascimento.ToString("dd/MM/yyyy")</td>
+        </tr>
+    </table>
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Prencha o formulário abaixo</h3>
+        </div>
+        <!-- inicio do formulário -->
+        @using (Html.BeginForm("Create", "Matricula", FormMethod.Post, new { @role = "form" }))
+        {
+            @Html.ValidationSummary(true)
+            <!-- Conteudo do formulário -->
+            <div class="card-body">
+                <div class="form-group">
+                    @Html.Hidden("AlunoId", Model.Aluno.AlunoId, null)
+
+                    @Html.LabelFor(c => c.Cursos)
+                    @Html.DropDownListFor(ma => ma.CursoId, new SelectList(Model.Cursos, "CursoId", "Titulo"), "--- Selecione ---", new { @class = "form form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.DataInicio)
+                    @Html.TextBoxFor(model => model.DataInicio, new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(a => a.DataInicio)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.DataFim)
+                    @Html.TextBoxFor(model => model.DataFim, new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(a => a.DataFim)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Turno)
+                    @Html.DropDownListFor(model => model.Turno, Html.GetEnumSelectList<Turnos>(), null, new { @class = "form-control" })
+                </div>
+            </div><!-- fim do formulário -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+
+        }
+    </div>
+
+
+
+}
+else
+{
+    <h1>Não há cursos cadastrados no sistema</h1>
+    @Html.ActionLink("Voltar", "Index", "Aluno", null, new { @class = "btn btn-primary" })
+}

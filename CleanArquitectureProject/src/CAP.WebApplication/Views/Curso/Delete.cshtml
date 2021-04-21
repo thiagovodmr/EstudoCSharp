@@ -1,0 +1,25 @@
+﻿@model CAP.ApplicationCore.ViewModels.Curso.CursoViewModel
+
+<h1>Tem certeza que deseja deletar o cadastro a seguir</h1>
+@using (Html.BeginForm("Delete", "Curso", FormMethod.Post))
+{
+    <div>
+        @Html.HiddenFor(model => model.CursoId)
+    </div>
+
+    <div>
+        @Html.LabelFor(a => a.Titulo)
+    </div>
+    <div>
+        @Html.TextBoxFor(a => a.Titulo, null, new { @class = "form form-control", @disabled = "disabled" })
+    </div>
+    <div>
+        @Html.LabelFor(a => a.Descricao)
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model.Descricao,  new { @class = "form-control", @disabled = "disabled" })
+    </div>
+    <div>
+        <input type="submit" value="Deletar" class="btn btn-danger mt-3">
+    </div>
+}
